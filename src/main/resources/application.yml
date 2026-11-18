@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: car-booking-sytem
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/car_booking_db
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:admin}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true
+
+  sql:
+    init:
+      mode: always
+
+logging:
+  level:
+    com.example.carbooking: DEBUG
