@@ -26,13 +26,13 @@ public class CarBooking {
     @Column(name = "car_booking_id")
     private Integer carBookingId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "car_id", nullable = false)
     private Car car;
 
-    @Column(name = "booked_from")
+    @Column(name = "booked_from", nullable = false)
     private LocalDateTime bookedFrom;
 
-    @Column(name = "booked_to")
+    @Column(name = "booked_to", nullable = false)
     private LocalDateTime bookedTo;
 }
