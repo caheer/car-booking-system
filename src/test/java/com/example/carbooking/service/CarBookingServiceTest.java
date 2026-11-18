@@ -1,6 +1,6 @@
 package com.example.carbooking.service;
 
-import com.example.carbooking.dto.CarBookingDto;
+import com.example.carbooking.dto.CarBookingResponseDto;
 import com.example.carbooking.dto.CarBookingRequestDto;
 import com.example.carbooking.exception.CarBookingUnsuccessfulException;
 import com.example.carbooking.exception.NoAvailableCarFoundException;
@@ -90,7 +90,7 @@ class CarBookingServiceTest {
         when(carBookingRepository.save(any(CarBooking.class)))
                 .thenReturn(savedBooking);
 
-        CarBookingDto result =
+        CarBookingResponseDto result =
                 carBookingService.createCarBooking(request);
 
         assertNotNull(result);
@@ -205,7 +205,7 @@ class CarBookingServiceTest {
         when(carBookingRepository.save(any(CarBooking.class)))
                 .thenReturn(savedBooking);
 
-        CarBookingDto result =
+        CarBookingResponseDto result =
                 carBookingService.createCarBooking(request);
 
         assertEquals(carType, result.carType());

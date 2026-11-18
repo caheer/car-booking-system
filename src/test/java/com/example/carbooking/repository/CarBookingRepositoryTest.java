@@ -3,7 +3,6 @@ package com.example.carbooking.repository;
 import com.example.carbooking.model.Car;
 import com.example.carbooking.model.CarBooking;
 import com.example.carbooking.model.CarType;
-import com.example.carbooking.service.CarBookingService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
@@ -13,7 +12,6 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
 
 @DataJpaTest
 class CarBookingRepositoryTest {

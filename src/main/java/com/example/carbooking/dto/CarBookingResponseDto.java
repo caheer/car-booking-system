@@ -4,7 +4,7 @@ import com.example.carbooking.model.CarType;
 
 import java.time.LocalDateTime;
 
-public record CarBookingDto(
+public record CarBookingResponseDto(
         int carBookingId,
         int carId,
         CarType carType,

@@ -1,6 +1,6 @@
 package com.example.carbooking.controller;
 
-import com.example.carbooking.dto.CarBookingDto;
+import com.example.carbooking.dto.CarBookingResponseDto;
 import com.example.carbooking.dto.CarBookingRequestDto;
 import com.example.carbooking.service.CarBookingService;
 import jakarta.validation.Valid;
@@ -22,10 +22,10 @@ public class CarBookingController {
     }
 
     @PostMapping
-    public ResponseEntity<CarBookingDto> createCarBooking(
+    public ResponseEntity<CarBookingResponseDto> createCarBooking(
             @Valid @RequestBody CarBookingRequestDto request) {
 
-        CarBookingDto result = carBookingService.createCarBooking(request);
+        CarBookingResponseDto result = carBookingService.createCarBooking(request);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
