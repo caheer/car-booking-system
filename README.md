@@ -25,3 +25,5 @@
 - **Database concurrency semantics matter.** The implementation relies on the database's pessimistic locking and transaction isolation behavior. These assumptions should be verified for the chosen database and isolation level, particularly if the database configuration changes.
 
 - **Concurrent database transactions have not been tested directly.** Unit tests cover service decisions and failure paths, while repository tests verify interval overlaps and boundary conditions. Concurrent booking behavior has not been explicitly verified using simultaneous database transactions.
+
+- **Controller tests are not included.** REST endpoint behavior has not been verified through dedicated MockMvc tests. Input validation is implemented using Jakarta Bean Validation annotations, but has not been tested separately.
