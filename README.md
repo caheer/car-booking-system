@@ -16,6 +16,8 @@
 
 - **Time representation.** Booking times use `LocalDateTime` and assume a common business time zone. Supporting multiple regions would require an explicit time-zone policy.
 
+- **Calculating rental period.** Each 24h 'day' of car begins at the exact precise moment in time specified in the requested booking date input, and ends 24h later. The assignment does not specify rental-day calculation rules, although in real life scenarios such specifics would usually be clarified with the client before implementation.
+
 ## Known Limitations
 
 - **All booking writers must follow the locking protocol.** Prevention of overlapping reservations depends on acquiring the relevant car lock and rechecking availability before inserting a booking. Direct database inserts, bulk operations or external writers that bypass this protocol are not independently prevented from creating overlaps by a database constraint.
