@@ -1,0 +1,376 @@
+mvnw.cmd -Didea.version=2026.3 -Dmaven.ext.class.path=C:\Program Files\JetBrains\IntelliJ IDEA 2026.3\plugins\maven-plugin\lib\intellij.maven.rt\maven-event-listener.jar -Djansi.passthrough=true -Dstyle.color=always -Dmaven.repo.local=C:\Users\tmade\.m2\repository clean install -f pom.xml
+[INFO] Scanning for projects...
+[INFO] Loaded 24544 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] 
+[INFO] -------------------< com.example:car-booking-system >-------------------
+[INFO] Building car-booking-system 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.5.0:clean (default-clean) @ car-booking-system ---
+[INFO] Deleting C:\DEV_ENV\IDEA_PROJECTS\car-booking-system\target
+[INFO] 
+[INFO] --- resources:3.5.0:resources (default-resources) @ car-booking-system ---
+[INFO] Copying 3 resources from src\main\resources to target\classes
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ car-booking-system ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 13 source files with javac [debug parameters release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ car-booking-system ---
+[INFO] Copying 1 resource from src\test\resources to target\test-classes
+[INFO]
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ car-booking-system ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 6 source files with javac [debug parameters release 21] to target\test-classes
+[INFO]
+[INFO] --- surefire:3.5.6:test (default-test) @ car-booking-system ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.example.carbooking.CarBookingApplicationTests
+11:51:38.383 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.example.carbooking.CarBookingApplicationTests]: CarBookingApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+11:51:38.427 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.example.carbooking.CarBookingApplication for test class com.example.carbooking.CarBookingApplicationTests
+11:51:38.469 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.example.carbooking.CarBookingApplicationTests]: CarBookingApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+11:51:38.470 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.example.carbooking.CarBookingApplication for test class com.example.carbooking.CarBookingApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.2)
+
+2026-11-19T11:51:38.672+01:00  INFO 17564 --- [car-booking-system] [           main] c.e.c.CarBookingApplicationTests         : Starting CarBookingApplicationTests using Java 21.0.13 with PID 17564 (started by tmade in C:\DEV_ENV\IDEA_PROJECTS\car-booking-system)
+2026-11-19T11:51:38.674+01:00 DEBUG 17564 --- [car-booking-system] [           main] c.e.c.CarBookingApplicationTests         : Running with Spring Boot v4.1.2, Spring v7.0.10
+2026-11-19T11:51:38.674+01:00  INFO 17564 --- [car-booking-system] [           main] c.e.c.CarBookingApplicationTests         : The following 1 profile is active: "postgres"
+2026-11-19T11:51:39.104+01:00  INFO 17564 --- [car-booking-system] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-11-19T11:51:39.134+01:00  INFO 17564 --- [car-booking-system] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 24 ms. Found 2 JPA repository interfaces.
+2026-11-19T11:51:39.443+01:00  INFO 17564 --- [car-booking-system] [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-11-19T11:51:39.560+01:00  INFO 17564 --- [car-booking-system] [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.13.Final
+2026-11-19T11:51:39.868+01:00  INFO 17564 --- [car-booking-system] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-11-19T11:51:39.883+01:00  INFO 17564 --- [car-booking-system] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-11-19T11:51:39.977+01:00  INFO 17564 --- [car-booking-system] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5c703860
+2026-11-19T11:51:39.977+01:00  INFO 17564 --- [car-booking-system] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-11-19T11:51:40.014+01:00  INFO 17564 --- [car-booking-system] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/car_booking_db]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.6
+	Default catalog/schema: car_booking_db/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-11-19T11:51:40.457+01:00  INFO 17564 --- [car-booking-system] [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-11-19T11:51:40.500+01:00  INFO 17564 --- [car-booking-system] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-11-19T11:51:40.547+01:00  INFO 17564 --- [car-booking-system] [           main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-11-19T11:51:41.474+01:00  INFO 17564 --- [car-booking-system] [           main] c.e.c.CarBookingApplicationTests         : Started CarBookingApplicationTests in 2.972 seconds (process running for 3.635)
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+WARNING: A Java agent has been loaded dynamically (C:\Users\tmade\.m2\repository\net\bytebuddy\byte-buddy-agent\1.18.15\byte-buddy-agent-1.18.15.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.438 s -- in com.example.carbooking.CarBookingApplicationTests
+[INFO] Running com.example.carbooking.controller.CarBookingControllerTest
+2026-11-19T11:51:41.670+01:00  INFO 17564 --- [car-booking-system] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.carbooking.controller.CarBookingControllerTest]: CarBookingControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-19T11:51:41.685+01:00  INFO 17564 --- [car-booking-system] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.carbooking.CarBookingApplication for test class com.example.carbooking.controller.CarBookingControllerTest
+2026-11-19T11:51:41.686+01:00  INFO 17564 --- [car-booking-system] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.carbooking.controller.CarBookingControllerTest]: CarBookingControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-19T11:51:41.690+01:00  INFO 17564 --- [car-booking-system] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.carbooking.CarBookingApplication for test class com.example.carbooking.controller.CarBookingControllerTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.2)
+
+2026-11-19T11:51:41.711+01:00  INFO 17564 --- [car-booking-system] [           main] c.e.c.c.CarBookingControllerTest         : Starting CarBookingControllerTest using Java 21.0.13 with PID 17564 (started by tmade in C:\DEV_ENV\IDEA_PROJECTS\car-booking-system)
+2026-11-19T11:51:41.711+01:00 DEBUG 17564 --- [car-booking-system] [           main] c.e.c.c.CarBookingControllerTest         : Running with Spring Boot v4.1.2, Spring v7.0.10
+2026-11-19T11:51:41.711+01:00  INFO 17564 --- [car-booking-system] [           main] c.e.c.c.CarBookingControllerTest         : The following 1 profile is active: "postgres"
+2026-11-19T11:51:42.028+01:00  INFO 17564 --- [car-booking-system] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-19T11:51:42.029+01:00  INFO 17564 --- [car-booking-system] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-19T11:51:42.034+01:00  INFO 17564 --- [car-booking-system] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2026-11-19T11:51:42.057+01:00  INFO 17564 --- [car-booking-system] [           main] c.e.c.c.CarBookingControllerTest         : Started CarBookingControllerTest in 0.363 seconds (process running for 4.217)
+2026-11-19T11:51:42.486+01:00  WARN 17564 --- [car-booking-system] [           main] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.example.carbooking.dto.CarBookingResponseDto> com.example.carbooking.controller.CarBookingController.createCarBooking(com.example.carbooking.dto.CarBookingRequestDto): [Field error in object 'carBookingRequestDto' on field 'numberOfDays': rejected value [0]; codes [Min.carBookingRequestDto.numberOfDays,Min.numberOfDays,Min.int,Min]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [carBookingRequestDto.numberOfDays,numberOfDays]; arguments []; default message [numberOfDays],1]; default message [must be greater than or equal to 1]] ]
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.976 s -- in com.example.carbooking.controller.CarBookingControllerTest
+[INFO] Running com.example.carbooking.repository.CarBookingRepositoryTest
+2026-11-19T11:51:42.652+01:00  INFO 17564 --- [car-booking-system] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.carbooking.repository.CarBookingRepositoryTest]: CarBookingRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-19T11:51:42.668+01:00  INFO 17564 --- [car-booking-system] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.carbooking.CarBookingApplication for test class com.example.carbooking.repository.CarBookingRepositoryTest
+2026-11-19T11:51:42.669+01:00  INFO 17564 --- [car-booking-system] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.carbooking.repository.CarBookingRepositoryTest]: CarBookingRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-19T11:51:42.674+01:00  INFO 17564 --- [car-booking-system] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.carbooking.CarBookingApplication for test class com.example.carbooking.repository.CarBookingRepositoryTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.2)
+
+2026-11-19T11:51:42.699+01:00  INFO 17564 --- [car-booking-system] [           main] c.e.c.r.CarBookingRepositoryTest         : Starting CarBookingRepositoryTest using Java 21.0.13 with PID 17564 (started by tmade in C:\DEV_ENV\IDEA_PROJECTS\car-booking-system)
+2026-11-19T11:51:42.699+01:00 DEBUG 17564 --- [car-booking-system] [           main] c.e.c.r.CarBookingRepositoryTest         : Running with Spring Boot v4.1.2, Spring v7.0.10
+2026-11-19T11:51:42.699+01:00  INFO 17564 --- [car-booking-system] [           main] c.e.c.r.CarBookingRepositoryTest         : The following 1 profile is active: "postgres"
+2026-11-19T11:51:42.754+01:00  INFO 17564 --- [car-booking-system] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-11-19T11:51:42.764+01:00  INFO 17564 --- [car-booking-system] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 2 JPA repository interfaces.
+2026-11-19T11:51:42.777+01:00  INFO 17564 --- [car-booking-system] [           main] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
+2026-11-19T11:51:42.807+01:00  INFO 17564 --- [car-booking-system] [           main] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:0d8b59fb-87a2-4d57-a5d7-6d1626d734ab;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2026-11-19T11:51:43.014+01:00  INFO 17564 --- [car-booking-system] [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-11-19T11:51:43.058+01:00  INFO 17564 --- [car-booking-system] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-11-19T11:51:43.077+01:00  INFO 17564 --- [car-booking-system] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:h2:mem:0d8b59fb-87a2-4d57-a5d7-6d1626d734ab]
+	Database driver: H2 JDBC Driver
+	Database dialect: H2Dialect
+	Database version: 2.4.240
+	Default catalog/schema: 0D8B59FB-87A2-4D57-A5D7-6D1626D734AB/PUBLIC
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: 100
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-11-19T11:51:43.197+01:00  INFO 17564 --- [car-booking-system] [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate:
+    create table car (
+        car_id integer generated by default as identity,
+        car_type enum ('SEDAN','SUV','VAN') not null,
+        primary key (car_id)
+    )
+Hibernate:
+    create table car_booking (
+        car_booking_id integer generated by default as identity,
+        booked_from timestamp(6) not null,
+        booked_to timestamp(6) not null,
+        car_id integer not null,
+        primary key (car_booking_id)
+    )
+Hibernate:
+    alter table if exists car_booking
+       add constraint FKqs0gswacie18x93yv7tbn6a24
+       foreign key (car_id)
+       references car
+2026-11-19T11:51:43.245+01:00  INFO 17564 --- [car-booking-system] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-11-19T11:51:43.307+01:00  INFO 17564 --- [car-booking-system] [           main] c.e.c.r.CarBookingRepositoryTest         : Started CarBookingRepositoryTest in 0.63 seconds (process running for 5.468)
+Hibernate:
+    insert
+    into
+        car
+        (car_type, car_id)
+    values
+        (?, default)
+Hibernate:
+    insert
+    into
+        car
+        (car_type, car_id)
+    values
+        (?, default)
+Hibernate:
+    insert
+    into
+        car_booking
+        (booked_from, booked_to, car_id, car_booking_id)
+    values
+        (?, ?, ?, default)
+Hibernate:
+    SELECT
+        c.car_id
+    FROM
+        car c
+    WHERE
+        c.car_type = ?
+        AND NOT EXISTS (       SELECT
+            1       FROM car_booking b
+        WHERE
+            b.car_id = c.car_id
+            AND b.booked_from < ?
+            AND b.booked_to > ?   )
+    ORDER BY
+        c.car_id
+    LIMIT
+        1
+Hibernate:
+    insert
+    into
+        car
+        (car_type, car_id)
+    values
+        (?, default)
+Hibernate:
+    insert
+    into
+        car_booking
+        (booked_from, booked_to, car_id, car_booking_id)
+    values
+        (?, ?, ?, default)
+Hibernate:
+    select
+        count(cb1_0.car_booking_id)
+    from
+        car_booking cb1_0
+    where
+        cb1_0.car_id=?
+        and cb1_0.booked_from<?
+        and cb1_0.booked_to>?
+Hibernate:
+    select
+        count(cb1_0.car_booking_id)
+    from
+        car_booking cb1_0
+    where
+        cb1_0.car_id=?
+        and cb1_0.booked_from<?
+        and cb1_0.booked_to>?
+Hibernate:
+    select
+        count(cb1_0.car_booking_id)
+    from
+        car_booking cb1_0
+    where
+        cb1_0.car_id=?
+        and cb1_0.booked_from<?
+        and cb1_0.booked_to>?
+Hibernate:
+    select
+        count(cb1_0.car_booking_id)
+    from
+        car_booking cb1_0
+    where
+        cb1_0.car_id=?
+        and cb1_0.booked_from<?
+        and cb1_0.booked_to>?
+Hibernate:
+    select
+        count(cb1_0.car_booking_id)
+    from
+        car_booking cb1_0
+    where
+        cb1_0.car_id=?
+        and cb1_0.booked_from<?
+        and cb1_0.booked_to>?
+Hibernate:
+    select
+        count(cb1_0.car_booking_id)
+    from
+        car_booking cb1_0
+    where
+        cb1_0.car_id=?
+        and cb1_0.booked_from<?
+        and cb1_0.booked_to>?
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.166 s -- in com.example.carbooking.repository.CarBookingRepositoryTest
+[INFO] Running com.example.carbooking.repository.CarPessimisticLockTest
+2026-11-19T11:51:43.816+01:00  INFO 17564 --- [car-booking-system] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.carbooking.repository.CarPessimisticLockTest]: CarPessimisticLockTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-19T11:51:43.818+01:00  INFO 17564 --- [car-booking-system] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.carbooking.CarBookingApplication for test class com.example.carbooking.repository.CarPessimisticLockTest
+2026-11-19T11:51:43.818+01:00  INFO 17564 --- [car-booking-system] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.carbooking.repository.CarPessimisticLockTest]: CarPessimisticLockTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-19T11:51:43.819+01:00  INFO 17564 --- [car-booking-system] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.carbooking.CarBookingApplication for test class com.example.carbooking.repository.CarPessimisticLockTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.2)
+
+2026-11-19T11:51:43.834+01:00  INFO 17564 --- [car-booking-system] [           main] c.e.c.repository.CarPessimisticLockTest  : Starting CarPessimisticLockTest using Java 21.0.13 with PID 17564 (started by tmade in C:\DEV_ENV\IDEA_PROJECTS\car-booking-system)
+2026-11-19T11:51:43.834+01:00 DEBUG 17564 --- [car-booking-system] [           main] c.e.c.repository.CarPessimisticLockTest  : Running with Spring Boot v4.1.2, Spring v7.0.10
+2026-11-19T11:51:43.835+01:00  INFO 17564 --- [car-booking-system] [           main] c.e.c.repository.CarPessimisticLockTest  : The following 1 profile is active: "postgres"
+2026-11-19T11:51:43.894+01:00  INFO 17564 --- [car-booking-system] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-11-19T11:51:43.900+01:00  INFO 17564 --- [car-booking-system] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5 ms. Found 2 JPA repository interfaces.
+2026-11-19T11:51:43.944+01:00  INFO 17564 --- [car-booking-system] [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-11-19T11:51:43.981+01:00  INFO 17564 --- [car-booking-system] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-11-19T11:51:43.981+01:00  INFO 17564 --- [car-booking-system] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2026-11-19T11:51:44.009+01:00  INFO 17564 --- [car-booking-system] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@54a6c0ad
+2026-11-19T11:51:44.010+01:00  INFO 17564 --- [car-booking-system] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2026-11-19T11:51:44.018+01:00  INFO 17564 --- [car-booking-system] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/car_booking_test_db]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.6
+	Default catalog/schema: car_booking_test_db/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-11-19T11:51:44.047+01:00  INFO 17564 --- [car-booking-system] [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-11-19T11:51:44.077+01:00  INFO 17564 --- [car-booking-system] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-11-19T11:51:44.174+01:00  INFO 17564 --- [car-booking-system] [           main] c.e.c.repository.CarPessimisticLockTest  : Started CarPessimisticLockTest in 0.353 seconds (process running for 6.335)
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.953 s -- in com.example.carbooking.repository.CarPessimisticLockTest
+[INFO] Running com.example.carbooking.service.CarBookingConcurrencyTest
+2026-11-19T11:51:44.770+01:00  INFO 17564 --- [car-booking-system] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.carbooking.service.CarBookingConcurrencyTest]: CarBookingConcurrencyTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-19T11:51:44.774+01:00  INFO 17564 --- [car-booking-system] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.carbooking.CarBookingApplication for test class com.example.carbooking.service.CarBookingConcurrencyTest
+2026-11-19T11:51:44.774+01:00  INFO 17564 --- [car-booking-system] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.carbooking.service.CarBookingConcurrencyTest]: CarBookingConcurrencyTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-19T11:51:44.775+01:00  INFO 17564 --- [car-booking-system] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.carbooking.CarBookingApplication for test class com.example.carbooking.service.CarBookingConcurrencyTest
+2026-11-19T11:51:44.791+01:00  INFO 17564 --- [car-booking-system] [pool-4-thread-2] c.e.c.service.CarBookingService          : Booking requested: type=SEDAN, from=2030-01-15T10:00, days=7
+2026-11-19T11:51:44.792+01:00  INFO 17564 --- [car-booking-system] [pool-4-thread-1] c.e.c.service.CarBookingService          : Booking requested: type=SEDAN, from=2030-01-15T10:00, days=7
+2026-11-19T11:51:44.801+01:00 DEBUG 17564 --- [car-booking-system] [pool-4-thread-2] c.e.c.service.CarBookingService          : Candidate car found: carId=2
+2026-11-19T11:51:44.801+01:00 DEBUG 17564 --- [car-booking-system] [pool-4-thread-1] c.e.c.service.CarBookingService          : Candidate car found: carId=2
+2026-11-19T11:51:44.802+01:00 DEBUG 17564 --- [car-booking-system] [pool-4-thread-2] c.e.c.service.CarBookingService          : Lock acquired for carId=2
+2026-11-19T11:51:44.805+01:00  INFO 17564 --- [car-booking-system] [pool-4-thread-2] c.e.c.service.CarBookingService          : Booking created: bookingId=1, carId=2, from=2030-01-15T10:00, to=2030-01-22T10:00
+2026-11-19T11:51:44.805+01:00 DEBUG 17564 --- [car-booking-system] [pool-4-thread-1] c.e.c.service.CarBookingService          : Lock acquired for carId=2
+2026-11-19T11:51:44.807+01:00  WARN 17564 --- [car-booking-system] [pool-4-thread-1] c.e.c.service.CarBookingService          : Booking rejected: carId=2 is no longer available
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.087 s -- in com.example.carbooking.service.CarBookingConcurrencyTest
+[INFO] Running com.example.carbooking.service.CarBookingServiceTest
+2026-11-19T11:51:45.005+01:00  INFO 17564 --- [car-booking-system] [           main] c.e.c.service.CarBookingService          : Booking requested: type=SEDAN, from=2027-01-15T10:00, days=7
+2026-11-19T11:51:45.006+01:00 DEBUG 17564 --- [car-booking-system] [           main] c.e.c.service.CarBookingService          : Candidate car found: carId=1
+2026-11-19T11:51:45.006+01:00 DEBUG 17564 --- [car-booking-system] [           main] c.e.c.service.CarBookingService          : Lock acquired for carId=1
+2026-11-19T11:51:45.010+01:00  INFO 17564 --- [car-booking-system] [           main] c.e.c.service.CarBookingService          : Booking requested: type=SEDAN, from=2027-01-15T10:00, days=7
+2026-11-19T11:51:45.011+01:00 DEBUG 17564 --- [car-booking-system] [           main] c.e.c.service.CarBookingService          : Candidate car found: carId=1
+2026-11-19T11:51:45.013+01:00  INFO 17564 --- [car-booking-system] [           main] c.e.c.service.CarBookingService          : Booking requested: type=SEDAN, from=2027-01-15T10:00, days=7
+2026-11-19T11:51:45.013+01:00 DEBUG 17564 --- [car-booking-system] [           main] c.e.c.service.CarBookingService          : Candidate car found: carId=1
+2026-11-19T11:51:45.013+01:00 DEBUG 17564 --- [car-booking-system] [           main] c.e.c.service.CarBookingService          : Lock acquired for carId=1
+2026-11-19T11:51:45.013+01:00  WARN 17564 --- [car-booking-system] [           main] c.e.c.service.CarBookingService          : Booking rejected: carId=1 is no longer available
+2026-11-19T11:51:45.017+01:00  INFO 17564 --- [car-booking-system] [           main] c.e.c.service.CarBookingService          : Booking requested: type=SEDAN, from=2027-01-15T10:00, days=7
+2026-11-19T11:51:45.017+01:00 DEBUG 17564 --- [car-booking-system] [           main] c.e.c.service.CarBookingService          : Candidate car found: carId=1
+2026-11-19T11:51:45.018+01:00 DEBUG 17564 --- [car-booking-system] [           main] c.e.c.service.CarBookingService          : Lock acquired for carId=1
+2026-11-19T11:51:45.018+01:00  INFO 17564 --- [car-booking-system] [           main] c.e.c.service.CarBookingService          : Booking created: bookingId=1, carId=1, from=2027-01-15T10:00, to=2027-01-22T10:00
+2026-11-19T11:51:45.043+01:00  INFO 17564 --- [car-booking-system] [           main] c.e.c.service.CarBookingService          : Booking requested: type=SEDAN, from=2027-01-15T10:00, days=7
+2026-11-19T11:51:45.044+01:00 DEBUG 17564 --- [car-booking-system] [           main] c.e.c.service.CarBookingService          : Candidate car found: carId=1
+2026-11-19T11:51:45.044+01:00 DEBUG 17564 --- [car-booking-system] [           main] c.e.c.service.CarBookingService          : Lock acquired for carId=1
+2026-11-19T11:51:45.044+01:00  INFO 17564 --- [car-booking-system] [           main] c.e.c.service.CarBookingService          : Booking created: bookingId=1, carId=1, from=2027-01-15T10:00, to=2027-01-22T10:00
+2026-11-19T11:51:45.046+01:00  INFO 17564 --- [car-booking-system] [           main] c.e.c.service.CarBookingService          : Booking requested: type=SUV, from=2027-01-15T10:00, days=7
+2026-11-19T11:51:45.046+01:00 DEBUG 17564 --- [car-booking-system] [           main] c.e.c.service.CarBookingService          : Candidate car found: carId=1
+2026-11-19T11:51:45.046+01:00 DEBUG 17564 --- [car-booking-system] [           main] c.e.c.service.CarBookingService          : Lock acquired for carId=1
+2026-11-19T11:51:45.046+01:00  INFO 17564 --- [car-booking-system] [           main] c.e.c.service.CarBookingService          : Booking created: bookingId=1, carId=1, from=2027-01-15T10:00, to=2027-01-22T10:00
+2026-11-19T11:51:45.049+01:00  INFO 17564 --- [car-booking-system] [           main] c.e.c.service.CarBookingService          : Booking requested: type=VAN, from=2027-01-15T10:00, days=7
+2026-11-19T11:51:45.049+01:00 DEBUG 17564 --- [car-booking-system] [           main] c.e.c.service.CarBookingService          : Candidate car found: carId=1
+2026-11-19T11:51:45.049+01:00 DEBUG 17564 --- [car-booking-system] [           main] c.e.c.service.CarBookingService          : Lock acquired for carId=1
+2026-11-19T11:51:45.049+01:00  INFO 17564 --- [car-booking-system] [           main] c.e.c.service.CarBookingService          : Booking created: bookingId=1, carId=1, from=2027-01-15T10:00, to=2027-01-22T10:00
+2026-11-19T11:51:45.050+01:00  INFO 17564 --- [car-booking-system] [           main] c.e.c.service.CarBookingService          : Booking requested: type=SEDAN, from=2027-01-15T10:00, days=7
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.190 s -- in com.example.carbooking.service.CarBookingServiceTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 16, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --- jar:3.5.1:jar (default-jar) @ car-booking-system ---
+[INFO] Building jar: C:\DEV_ENV\IDEA_PROJECTS\car-booking-system\target\car-booking-system-0.0.1-SNAPSHOT.jar
+[INFO]
+[INFO] --- spring-boot:4.1.2:repackage (repackage) @ car-booking-system ---
+[INFO] Replacing main artifact C:\DEV_ENV\IDEA_PROJECTS\car-booking-system\target\car-booking-system-0.0.1-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to C:\DEV_ENV\IDEA_PROJECTS\car-booking-system\target\car-booking-system-0.0.1-SNAPSHOT.jar.original
+[INFO]
+[INFO] --- install:3.1.4:install (default-install) @ car-booking-system ---
+[INFO] Installing C:\DEV_ENV\IDEA_PROJECTS\car-booking-system\pom.xml to C:\Users\tmade\.m2\repository\com\example\car-booking-system\0.0.1-SNAPSHOT\car-booking-system-0.0.1-SNAPSHOT.pom
+[INFO] Installing C:\DEV_ENV\IDEA_PROJECTS\car-booking-system\target\car-booking-system-0.0.1-SNAPSHOT.jar to C:\Users\tmade\.m2\repository\com\example\car-booking-system\0.0.1-SNAPSHOT\car-booking-system-0.0.1-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  10.835 s
+[INFO] Finished at: 2026-11-19T11:51:45+01:00
+[INFO] ------------------------------------------------------------------------

@@ -13,4 +13,7 @@ public record CarBookingResponseDto(
         LocalDateTime bookedTo,
         String bookingMessage
 ) {
+
 }
+
+
