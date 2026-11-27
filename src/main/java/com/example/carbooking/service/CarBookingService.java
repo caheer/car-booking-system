@@ -20,16 +20,16 @@ import java.time.LocalDateTime;
 public class CarBookingService {
 
     private final CarBookingRepository carBookingRepository;
-    private final CarAllocationService carAllocationService;
+    private final CarAllocator carAllocator;
 
     private static final String SUCCESSFUL_BOOKING =
             "Car was successfully booked.";
 
     public CarBookingService(
             CarBookingRepository carBookingRepository,
-            CarAllocationService carAllocationService) {
+            CarAllocationService carAllocationService, CarAllocator carAllocator) {
         this.carBookingRepository = carBookingRepository;
-        this.carAllocationService = carAllocationService;
+        this.carAllocator = carAllocator;
     }
 
     @Transactional
@@ -45,7 +45,7 @@ public class CarBookingService {
                 requestedFrom,
                 request.numberOfDays());
 
-        Car availableCar = carAllocationService.allocateCar(
+        Car availableCar = carAllocator.allocateCar(
                 request.carType(), requestedFrom, requestedTo);
 
         CarBooking carBooking = carBookingRepository.save(

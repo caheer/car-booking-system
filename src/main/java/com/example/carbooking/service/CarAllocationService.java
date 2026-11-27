@@ -4,7 +4,6 @@ import com.example.carbooking.exception.CarBookingUnsuccessfulException;
 import com.example.carbooking.exception.NoAvailableCarFoundException;
 import com.example.carbooking.model.Car;
 import com.example.carbooking.model.CarType;
-import com.example.carbooking.repository.CarBookingRepository;
 import com.example.carbooking.repository.CarRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,27 +14,28 @@ import java.time.LocalDateTime;
 
 @Service
 @Slf4j
-public class CarAllocationService {
+public class CarAllocationService implements CarAllocator {
 
     private final CarRepository carRepository;
-    private final CarBookingRepository carBookingRepository;
+    private final CarAllocationStrategy allocationStrategy;
 
     public CarAllocationService(
             CarRepository carRepository,
-            CarBookingRepository carBookingRepository) {
+            CarAllocationStrategy allocationStrategy) {
+
         this.carRepository = carRepository;
-        this.carBookingRepository = carBookingRepository;
+        this.allocationStrategy = allocationStrategy;
     }
 
+    @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public Car allocateCar(
             CarType carType,
             LocalDateTime requestedFrom,
             LocalDateTime requestedTo) {
 
-        Integer availableCarId = carBookingRepository
-                .findFirstAvailableCarId(
-                        carType.name(), requestedFrom, requestedTo)
+        Integer availableCarId = allocationStrategy
+                .findCandidate(carType, requestedFrom, requestedTo)
                 .orElseThrow(() ->
                         new NoAvailableCarFoundException(carType));
 
@@ -49,13 +49,10 @@ public class CarAllocationService {
 
         log.debug("Lock acquired for carId={}", availableCarId);
 
-        long overlappingBookings = carBookingRepository
-                .countOverlappingBookings(
-                        availableCarId, requestedFrom, requestedTo);
+        if (!allocationStrategy.isAvailable(
+                availableCarId, requestedFrom, requestedTo)) {
 
-        if (overlappingBookings > 0) {
-            log.warn("Booking rejected: carId={} is no longer available",
-                    availableCarId);
+            log.warn("Car {} is no longer available", availableCarId);
 
             throw new CarBookingUnsuccessfulException(
                     carType, availableCarId);
