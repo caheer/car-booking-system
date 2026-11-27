@@ -20,54 +20,51 @@ import java.time.LocalDateTime;
 public class CarBookingService {
 
     private final CarBookingRepository carBookingRepository;
-    private final CarRepository carRepository;
-    private static final String SUCCESSFUL_BOOKING = "Car was successfully booked.";
+    private final CarAllocationService carAllocationService;
 
-    public CarBookingService(CarBookingRepository carBookingRepository, CarRepository carRepository) {
+    private static final String SUCCESSFUL_BOOKING =
+            "Car was successfully booked.";
+
+    public CarBookingService(
+            CarBookingRepository carBookingRepository,
+            CarAllocationService carAllocationService) {
         this.carBookingRepository = carBookingRepository;
-        this.carRepository = carRepository;
+        this.carAllocationService = carAllocationService;
     }
 
     @Transactional
-    public CarBookingResponseDto createCarBooking(CarBookingRequestDto request) {
+    public CarBookingResponseDto createCarBooking(
+            CarBookingRequestDto request) {
 
         LocalDateTime requestedFrom = request.bookingFrom();
-        LocalDateTime requestedTo = requestedFrom.plusDays(request.numberOfDays());
-        CarType carType = request.carType();
+        LocalDateTime requestedTo =
+                requestedFrom.plusDays(request.numberOfDays());
 
         log.info("Booking requested: type={}, from={}, days={}",
-                carType, requestedFrom, request.numberOfDays());
+                request.carType(),
+                requestedFrom,
+                request.numberOfDays());
 
-        // check if booking of any requested type of car is possible at all, without unnecessary locking, if not
-        // don't proceed further
-        Integer availableCarId = carBookingRepository.findFirstAvailableCarId(carType.name(), requestedFrom, requestedTo)
-                .orElseThrow(() -> new NoAvailableCarFoundException(carType));
-        log.debug("Candidate car found: carId={}", availableCarId);
+        Car availableCar = carAllocationService.allocateCar(
+                request.carType(), requestedFrom, requestedTo);
 
-        //  acquire the lock on the car that was found to be the first available one
-        Car availableCar = carRepository.findByIdForBooking(availableCarId)
-                .orElseThrow(() -> new CarBookingUnsuccessfulException(carType, availableCarId));
-        log.debug("Lock acquired for carId={}", availableCarId);
-
-        // re-check availability when lock is acquired to prevent a situation that another thread created the booking
-        // for this car between availability check and acquiring the lock
-        long overlappingBookings = carBookingRepository.countOverlappingBookings(
-                availableCarId, requestedFrom, requestedTo
-        );
-
-        if (overlappingBookings > 0) {
-            log.warn("Booking rejected: carId={} is no longer available", availableCarId);
-            throw new CarBookingUnsuccessfulException(carType, availableCarId);
-        }
-
-        CarBooking carBooking = carBookingRepository.save(new CarBooking(availableCar, requestedFrom, requestedTo));
+        CarBooking carBooking = carBookingRepository.save(
+                new CarBooking(
+                        availableCar, requestedFrom, requestedTo));
 
         log.info("Booking created: bookingId={}, carId={}, from={}, to={}",
                 carBooking.getCarBookingId(),
                 availableCar.getCarId(),
                 requestedFrom,
                 requestedTo);
-        return new CarBookingResponseDto(carBooking.getCarBookingId(), availableCar.getCarId(), availableCar.getCarType(),
-                request.numberOfDays(), carBooking.getBookedFrom(), carBooking.getBookedTo(), SUCCESSFUL_BOOKING);
+
+        return new CarBookingResponseDto(
+                carBooking.getCarBookingId(),
+                availableCar.getCarId(),
+                availableCar.getCarType(),
+                request.numberOfDays(),
+                carBooking.getBookedFrom(),
+                carBooking.getBookedTo(),
+                SUCCESSFUL_BOOKING);
     }
 }
