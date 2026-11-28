@@ -44,4 +44,31 @@ public interface CarBookingRepository extends JpaRepository<CarBooking, Integer>
             LocalDateTime requestedFrom,
             LocalDateTime requestedTo
     );
+
+    @Query(value = """
+        SELECT c.car_id
+        FROM car c
+        WHERE c.car_type = :carType
+          AND NOT EXISTS (
+              SELECT 1
+              FROM car_booking b
+              WHERE b.car_id = c.car_id
+                AND b.booked_to > :currentTime
+          )
+        ORDER BY c.car_id
+        LIMIT 1
+        """, nativeQuery = true)
+    Optional<Integer> findFirstUnreservedCarId(
+            @Param("carType") String carType,
+            @Param("currentTime") LocalDateTime currentTime);
+
+    @Query("""
+        SELECT COUNT(b)
+        FROM CarBooking b
+        WHERE b.car.carId = :carId
+          AND b.bookedTo > :currentTime
+        """)
+    long countOngoingAndFutureBookings(
+            @Param("carId") Integer carId,
+            @Param("currentTime") LocalDateTime currentTime);
 }

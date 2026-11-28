@@ -10,10 +10,12 @@ public interface CarAllocationStrategy {
     Optional<Integer> findCandidate(
             CarType carType,
             LocalDateTime requestedFrom,
-            LocalDateTime requestedTo);
+            LocalDateTime requestedTo,
+            LocalDateTime currentTime);
 
     boolean isAvailable(
             Integer carId,
             LocalDateTime requestedFrom,
-            LocalDateTime requestedTo);
+            LocalDateTime requestedTo,
+            LocalDateTime currentTime);
 }

@@ -22,7 +22,7 @@ public class StandardAllocationStrategy
     public Optional<Integer> findCandidate(
             CarType carType,
             LocalDateTime requestedFrom,
-            LocalDateTime requestedTo) {
+            LocalDateTime requestedTo, LocalDateTime currentTime) {
 
         return carBookingRepository.findFirstAvailableCarId(
                 carType.name(),
@@ -34,7 +34,7 @@ public class StandardAllocationStrategy
     public boolean isAvailable(
             Integer carId,
             LocalDateTime requestedFrom,
-            LocalDateTime requestedTo) {
+            LocalDateTime requestedTo, LocalDateTime currentTime) {
 
         return carBookingRepository.countOverlappingBookings(
                 carId,

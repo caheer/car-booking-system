@@ -6,6 +6,7 @@ import com.example.carbooking.model.Car;
 import com.example.carbooking.model.CarType;
 import com.example.carbooking.repository.CarRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +22,7 @@ public class CarAllocationService implements CarAllocator {
 
     public CarAllocationService(
             CarRepository carRepository,
+            @Qualifier("standardAllocationStrategy")
             CarAllocationStrategy allocationStrategy) {
 
         this.carRepository = carRepository;
@@ -34,8 +36,10 @@ public class CarAllocationService implements CarAllocator {
             LocalDateTime requestedFrom,
             LocalDateTime requestedTo) {
 
+        LocalDateTime currentTime = LocalDateTime.now();
+
         Integer availableCarId = allocationStrategy
-                .findCandidate(carType, requestedFrom, requestedTo)
+                .findCandidate(carType, requestedFrom, requestedTo, currentTime)
                 .orElseThrow(() ->
                         new NoAvailableCarFoundException(carType));
 
@@ -50,7 +54,7 @@ public class CarAllocationService implements CarAllocator {
         log.debug("Lock acquired for carId={}", availableCarId);
 
         if (!allocationStrategy.isAvailable(
-                availableCarId, requestedFrom, requestedTo)) {
+                availableCarId, requestedFrom, requestedTo, currentTime)) {
 
             log.warn("Car {} is no longer available", availableCarId);
 
