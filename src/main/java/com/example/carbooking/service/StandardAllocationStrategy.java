@@ -1,5 +1,6 @@
 package com.example.carbooking.service;
 
+import com.example.carbooking.model.AllocationType;
 import com.example.carbooking.model.CarType;
 import com.example.carbooking.repository.CarBookingRepository;
 import org.springframework.stereotype.Component;
@@ -40,5 +41,10 @@ public class StandardAllocationStrategy
                 carId,
                 requestedFrom,
                 requestedTo) == 0;
+    }
+
+    @Override
+    public AllocationType getAllocationType() {
+        return AllocationType.STANDARD;
     }
 }

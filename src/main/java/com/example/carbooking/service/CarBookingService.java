@@ -46,7 +46,10 @@ public class CarBookingService {
                 request.numberOfDays());
 
         Car availableCar = carAllocator.allocateCar(
-                request.carType(), requestedFrom, requestedTo);
+                request.carType(),
+                requestedFrom,
+                requestedTo,
+                request.allocationType());
 
         CarBooking carBooking = carBookingRepository.save(
                 new CarBooking(

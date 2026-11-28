@@ -1,5 +1,6 @@
 package com.example.carbooking.dto;
 
+import com.example.carbooking.model.AllocationType;
 import com.example.carbooking.model.CarType;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.Min;
@@ -17,6 +18,9 @@ public record CarBookingRequestDto(
         LocalDateTime bookingFrom,
 
         @Min(1)
-        int numberOfDays
+        int numberOfDays,
+
+        @NotNull
+        AllocationType allocationType
 ) {
 }

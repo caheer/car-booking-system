@@ -2,6 +2,7 @@ package com.example.carbooking.service;
 
 import com.example.carbooking.exception.CarBookingUnsuccessfulException;
 import com.example.carbooking.exception.NoAvailableCarFoundException;
+import com.example.carbooking.model.AllocationType;
 import com.example.carbooking.model.Car;
 import com.example.carbooking.model.CarType;
 import com.example.carbooking.repository.CarRepository;
@@ -18,15 +19,15 @@ import java.time.LocalDateTime;
 public class CarAllocationService implements CarAllocator {
 
     private final CarRepository carRepository;
-    private final CarAllocationStrategy allocationStrategy;
+    private final CarAllocationStrategyFactory strategyFactory;
 
     public CarAllocationService(
             CarRepository carRepository,
             @Qualifier("standardAllocationStrategy")
-            CarAllocationStrategy allocationStrategy) {
+            CarAllocationStrategy allocationStrategy, CarAllocationStrategyFactory strategyFactory) {
 
         this.carRepository = carRepository;
-        this.allocationStrategy = allocationStrategy;
+        this.strategyFactory = strategyFactory;
     }
 
     @Override
@@ -34,7 +35,11 @@ public class CarAllocationService implements CarAllocator {
     public Car allocateCar(
             CarType carType,
             LocalDateTime requestedFrom,
-            LocalDateTime requestedTo) {
+            LocalDateTime requestedTo,
+            AllocationType allocationType) {
+
+        CarAllocationStrategy allocationStrategy =
+                strategyFactory.getStrategy(allocationType);
 
         LocalDateTime currentTime = LocalDateTime.now();
 

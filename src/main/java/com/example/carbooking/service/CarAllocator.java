@@ -1,5 +1,6 @@
 package com.example.carbooking.service;
 
+import com.example.carbooking.model.AllocationType;
 import com.example.carbooking.model.Car;
 import com.example.carbooking.model.CarType;
 
@@ -10,5 +11,6 @@ public interface CarAllocator {
     Car allocateCar(
             CarType carType,
             LocalDateTime requestedFrom,
-            LocalDateTime requestedTo);
+            LocalDateTime requestedTo,
+            AllocationType allocationType);
 }
