@@ -4,11 +4,11 @@ import com.example.carbooking.dto.CarBookingResponseDto;
 import com.example.carbooking.dto.CarBookingRequestDto;
 import com.example.carbooking.exception.CarBookingUnsuccessfulException;
 import com.example.carbooking.exception.NoAvailableCarFoundException;
+import com.example.carbooking.model.AllocationType;
 import com.example.carbooking.model.Car;
 import com.example.carbooking.model.CarBooking;
 import com.example.carbooking.model.CarType;
 import com.example.carbooking.repository.CarBookingRepository;
-import com.example.carbooking.repository.CarRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,7 +21,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -37,7 +36,7 @@ class CarBookingServiceTest {
     private CarBookingRepository carBookingRepository;
 
     @Mock
-    private CarRepository carRepository;
+    private CarAllocator carAllocator;
 
     private static final int CAR_ID = 1;
     private static final int NUMBER_OF_DAYS = 7;
@@ -50,41 +49,42 @@ class CarBookingServiceTest {
 
     @BeforeEach
     void setUp() {
-        requestedFrom = LocalDateTime.of(2027, 1, 15, 10, 0);
+        requestedFrom = LocalDateTime.of(2030, 1, 15, 10, 0);
         requestedTo = requestedFrom.plusDays(NUMBER_OF_DAYS);
 
         availableCar = new Car(CAR_TYPE);
         availableCar.setCarId(CAR_ID);
 
         request = new CarBookingRequestDto(
-                CAR_TYPE, requestedFrom, NUMBER_OF_DAYS);
+                CAR_TYPE,
+                requestedFrom,
+                NUMBER_OF_DAYS,
+                AllocationType.STANDARD);
     }
 
-    private void mockAvailableCarFound() {
-        when(carBookingRepository.findFirstAvailableCarId(
-                CAR_TYPE.name(), requestedFrom, requestedTo))
-                .thenReturn(Optional.of(CAR_ID));
-    }
 
-    private void mockCarLockedSuccessfully() {
-        when(carRepository.findByIdForBooking(CAR_ID))
-                .thenReturn(Optional.of(availableCar));
-    }
-
-    private void mockNoOverlappingBookings() {
-        when(carBookingRepository.countOverlappingBookings(
-                CAR_ID, requestedFrom, requestedTo))
-                .thenReturn(0L);
+    private void mockSuccessfulCarAllocation() {
+        when(carAllocator.allocateCar(
+                CAR_TYPE,
+                requestedFrom,
+                requestedTo,
+                AllocationType.STANDARD))
+                .thenReturn(availableCar);
     }
 
     @Test
     void createSuccessfulCarBooking() {
-        mockAvailableCarFound();
-        mockCarLockedSuccessfully();
-        mockNoOverlappingBookings();
+
+        when(carAllocator.allocateCar(
+                CAR_TYPE,
+                requestedFrom,
+                requestedTo,
+                AllocationType.STANDARD))
+                .thenReturn(availableCar);
 
         CarBooking savedBooking =
                 new CarBooking(availableCar, requestedFrom, requestedTo);
+
         savedBooking.setCarBookingId(1);
 
         when(carBookingRepository.save(any(CarBooking.class)))
@@ -110,9 +110,13 @@ class CarBookingServiceTest {
 
     @Test
     void testNoAvailableCarFound() {
-        when(carBookingRepository.findFirstAvailableCarId(
-                CAR_TYPE.name(), requestedFrom, requestedTo))
-                .thenReturn(Optional.empty());
+
+        when(carAllocator.allocateCar(
+                CAR_TYPE,
+                requestedFrom,
+                requestedTo,
+                AllocationType.STANDARD))
+                .thenThrow(new NoAvailableCarFoundException(CAR_TYPE));
 
         assertThrows(
                 NoAvailableCarFoundException.class,
@@ -124,29 +128,15 @@ class CarBookingServiceTest {
     }
 
     @Test
-    void testCarNotFoundDuringLocking() {
-        mockAvailableCarFound();
+    void testCarAllocationFails() {
 
-        when(carRepository.findByIdForBooking(CAR_ID))
-                .thenReturn(Optional.empty());
-
-        assertThrows(
-                CarBookingUnsuccessfulException.class,
-                () -> carBookingService.createCarBooking(request)
-        );
-
-        verify(carBookingRepository, never())
-                .save(any(CarBooking.class));
-    }
-
-    @Test
-    void testOverlappingBookings() {
-        mockAvailableCarFound();
-        mockCarLockedSuccessfully();
-
-        when(carBookingRepository.countOverlappingBookings(
-                CAR_ID, requestedFrom, requestedTo))
-                .thenReturn(1L);
+        when(carAllocator.allocateCar(
+                CAR_TYPE,
+                requestedFrom,
+                requestedTo,
+                AllocationType.STANDARD))
+                .thenThrow(new CarBookingUnsuccessfulException(
+                        CAR_TYPE, CAR_ID));
 
         assertThrows(
                 CarBookingUnsuccessfulException.class,
@@ -156,12 +146,12 @@ class CarBookingServiceTest {
         verify(carBookingRepository, never())
                 .save(any(CarBooking.class));
     }
+
 
     @Test
     void testSaveBookingFails() {
-        mockAvailableCarFound();
-        mockCarLockedSuccessfully();
-        mockNoOverlappingBookings();
+
+        mockSuccessfulCarAllocation();
 
         when(carBookingRepository.save(any(CarBooking.class)))
                 .thenThrow(
@@ -180,26 +170,27 @@ class CarBookingServiceTest {
     @ParameterizedTest
     @EnumSource(CarType.class)
     void shouldBookCarOfRequestedType(CarType carType) {
+
         Car car = new Car(carType);
         car.setCarId(CAR_ID);
 
         CarBookingRequestDto request = new CarBookingRequestDto(
-                carType, requestedFrom, NUMBER_OF_DAYS
+                carType,
+                requestedFrom,
+                NUMBER_OF_DAYS,
+                AllocationType.STANDARD
         );
 
-        when(carBookingRepository.findFirstAvailableCarId(
-                carType.name(), requestedFrom, requestedTo))
-                .thenReturn(Optional.of(CAR_ID));
-
-        when(carRepository.findByIdForBooking(CAR_ID))
-                .thenReturn(Optional.of(car));
-
-        when(carBookingRepository.countOverlappingBookings(
-                CAR_ID, requestedFrom, requestedTo))
-                .thenReturn(0L);
+        when(carAllocator.allocateCar(
+                carType,
+                requestedFrom,
+                requestedTo,
+                AllocationType.STANDARD))
+                .thenReturn(car);
 
         CarBooking savedBooking =
                 new CarBooking(car, requestedFrom, requestedTo);
+
         savedBooking.setCarBookingId(1);
 
         when(carBookingRepository.save(any(CarBooking.class)))

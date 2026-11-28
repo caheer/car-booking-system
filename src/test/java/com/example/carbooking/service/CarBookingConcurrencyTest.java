@@ -20,7 +20,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-
+import com.example.carbooking.model.AllocationType;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(properties = {
@@ -51,7 +51,11 @@ class CarBookingConcurrencyTest {
         LocalDateTime from = LocalDateTime.of(2030, 1, 15, 10, 0);
 
         CarBookingRequestDto request =
-                new CarBookingRequestDto(CarType.SEDAN, from, 7);
+                new CarBookingRequestDto(
+                        CarType.SEDAN,
+                        from,
+                        7,
+                        AllocationType.STANDARD);
 
         CountDownLatch ready = new CountDownLatch(2);
         CountDownLatch start = new CountDownLatch(1);

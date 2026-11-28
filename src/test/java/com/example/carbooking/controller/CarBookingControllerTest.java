@@ -52,7 +52,8 @@ class CarBookingControllerTest {
                                 {
                                   "carType": "SEDAN",
                                   "bookingFrom": "2030-01-15T10:00:00",
-                                  "numberOfDays": 3
+                                  "numberOfDays": 3,
+                                  "allocationType": "STANDARD"
                                 }
                                 """))
                 .andExpect(status().isCreated())
@@ -72,12 +73,13 @@ class CarBookingControllerTest {
         mockMvc.perform(post("/carBooking")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
-                                {
-                                  "carType": "SEDAN",
-                                  "bookingFrom": "2030-01-15T10:00:00",
-                                  "numberOfDays": 0
-                                }
-                                """))
+                            {
+                              "carType": "SEDAN",
+                              "bookingFrom": "2030-01-15T10:00:00",
+                              "numberOfDays": 0,
+                              "allocationType": "STANDARD"
+                            }
+                            """))
                 .andExpect(status().isBadRequest());
 
         verifyNoInteractions(carBookingService);
@@ -95,7 +97,8 @@ class CarBookingControllerTest {
                                 {
                                   "carType": "SEDAN",
                                   "bookingFrom": "2030-01-15T10:00:00",
-                                  "numberOfDays": 3
+                                  "numberOfDays": 3,
+                                  "allocationType": "STANDARD"
                                 }
                                 """))
                 .andExpect(status().isConflict())
